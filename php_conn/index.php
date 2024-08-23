@@ -13,16 +13,26 @@ while($row = mysqli_fetch_assoc($query)){
 
 echo json_encode($students);
 
-$data = json_decode(file_get_contents("php://input"),true);
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-   
+    
+    $data = json_decode(file_get_contents("php://input"),true);
     $id = $data['id'];
     $name = $data['name'];
     $email = $data['email'];
     $password = $data['password'];
 
-    $query = mysqli_query($connection,"update students set name = '$name' , password = '$password',email = '$email' where id = '$id'");
+    $query = mysqli_query($connection,"update students set name = '$name' , email = '$email',password = '$password' where id = '$id'");
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
+
+    $data = json_decode(file_get_contents("php://input"), true);
+    $id = $data['id'];
+
+
+    $query = mysqli_query($connection, "delete from students where id = '$id'");
 }
 
 ?>

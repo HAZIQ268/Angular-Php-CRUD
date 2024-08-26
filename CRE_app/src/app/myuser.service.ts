@@ -8,7 +8,7 @@ export class MyuserService {
 
   constructor(private http : HttpClient) { }
 
-  private url = 'http://localhost:3000/php_conn/index.php';
+  private url = 'http://localhost:3000/Angular-Php-CRUD/php_conn/index.php';
 
   abc(){
     return this.http.get(this.url);
